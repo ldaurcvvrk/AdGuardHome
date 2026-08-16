@@ -1,44 +1,37 @@
 module github.com/AdguardTeam/AdGuardHome
 
-go 1.26.6
+go 1.26.5
 
 require (
 	github.com/AdguardTeam/dnscrypt v0.0.2
-	github.com/AdguardTeam/dnsproxy v0.83.2
-	github.com/AdguardTeam/golibs v0.35.15
+	github.com/AdguardTeam/dnsproxy v0.83.0
+	github.com/AdguardTeam/golibs v0.35.14
 	github.com/AdguardTeam/urlfilter v0.23.4
 	github.com/NYTimes/gziphandler v1.1.1
 	github.com/bluele/gcache v0.0.2
 	github.com/c2h5oh/datasize v0.0.0-20231215233829-aa82cc1e6500
 	github.com/digineo/go-ipset/v2 v2.2.1
 	github.com/fsnotify/fsnotify v1.10.1
-	// TODO(e.burkov): This package is deprecated; find a new one or use our
-	// own code for that.  Perhaps, use gopacket.
 	github.com/go-ping/ping v1.2.0
 	github.com/google/go-cmp v0.7.0
-	// TODO(e.burkov): Remove this dependency along with the dhcpd package.
 	github.com/google/gopacket v1.1.19
 	github.com/google/renameio/v2 v2.0.2
 	github.com/google/uuid v1.6.0
 	github.com/gopacket/gopacket v1.7.0
 	github.com/insomniacslk/dhcp v0.0.0-20260603135910-a415979eb11e
-	// TODO(e.burkov):  Get rid of this dependency.  At least, don't update it,
-	// unless all custom templates will be migrated to the new format, see
-	// https://github.com/kardianos/service/issues/418.
 	github.com/kardianos/service v1.2.4
 	github.com/mdlayher/ethernet v0.0.0-20220221185849-529eae5b6118
 	github.com/mdlayher/netlink v1.11.2
 	github.com/mdlayher/packet v1.1.2
-	// TODO(a.garipov): This package is deprecated; Use gopacket.
 	github.com/mdlayher/raw v0.1.0
 	github.com/miekg/dns v1.1.72
 	github.com/quic-go/quic-go v0.60.0
 	github.com/stretchr/testify v1.11.1
 	github.com/ti-mo/netfilter v0.5.3
 	go.etcd.io/bbolt v1.5.0
-	// TODO(e.burkov): Update to a stable tag.
 	go.yaml.in/yaml/v4 v4.0.0-rc.6
 	golang.org/x/crypto v0.54.0
+	golang.org/x/exp v0.0.0-20260709172345-9ea1abe57597
 	golang.org/x/net v0.57.0
 	golang.org/x/sys v0.47.0
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1
@@ -47,7 +40,7 @@ require (
 
 require (
 	cloud.google.com/go v0.123.0 // indirect
-	cloud.google.com/go/auth v0.22.0 // indirect
+	cloud.google.com/go/auth v0.21.0 // indirect
 	cloud.google.com/go/compute/metadata v0.9.0 // indirect
 	github.com/BurntSushi/toml v1.6.0 // indirect
 	github.com/ameshkov/dnsstamps v1.0.3 // indirect
@@ -84,7 +77,6 @@ require (
 	github.com/robfig/cron/v3 v3.0.1 // indirect
 	github.com/rogpeppe/go-internal v1.15.0 // indirect
 	github.com/securego/gosec/v2 v2.28.0 // indirect
-	github.com/standard-webhooks/standard-webhooks/libraries v0.0.1 // indirect
 	github.com/tidwall/gjson v1.19.0 // indirect
 	github.com/tidwall/match v1.2.0 // indirect
 	github.com/tidwall/pretty v1.2.1 // indirect
@@ -98,7 +90,6 @@ require (
 	go.opentelemetry.io/otel/metric v1.44.0 // indirect
 	go.opentelemetry.io/otel/trace v1.44.0 // indirect
 	go.yaml.in/yaml/v3 v3.0.4 // indirect
-	golang.org/x/exp v0.0.0-20260709172345-9ea1abe57597 // indirect
 	golang.org/x/exp/typeparams v0.0.0-20260718201538-764159d718ef // indirect
 	golang.org/x/mod v0.38.0 // indirect
 	golang.org/x/sync v0.22.0 // indirect
@@ -121,33 +112,20 @@ require (
 	mvdan.cc/unparam v0.0.0-20251027182757-5beb8c8f8f15 // indirect
 )
 
-// NOTE:  Keep in sync with .gitignore.
-ignore (
-	./agh-backup
-	./bin
-	./build
-	./client
-	./data
-	./dist
-	./test-reports
-	./tmp
-	node_modules
-)
-
-tool (
-	github.com/fzipp/gocyclo/cmd/gocyclo
-	github.com/golangci/misspell/cmd/misspell
-	github.com/gordonklaus/ineffassign
-	github.com/jstemmer/go-junit-report/v2
-	github.com/kisielk/errcheck
-	github.com/securego/gosec/v2/cmd/gosec
-	github.com/uudashr/gocognit/cmd/gocognit
-	golang.org/x/tools/go/analysis/passes/fieldalignment/cmd/fieldalignment
-	golang.org/x/tools/go/analysis/passes/nilness/cmd/nilness
-	golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow
-	golang.org/x/vuln/cmd/govulncheck
-	honnef.co/go/tools/cmd/staticcheck
-	mvdan.cc/gofumpt
-	mvdan.cc/sh/v3/cmd/shfmt
-	mvdan.cc/unparam
+replace (
+	github.com/AdguardTeam/AdGuardHome/internal/aghalg => ./internal/aghalg
+	github.com/AdguardTeam/AdGuardHome/internal/aghhttp => ./internal/aghhttp
+	github.com/AdguardTeam/AdGuardHome/internal/aghnet => ./internal/aghnet
+	github.com/AdguardTeam/AdGuardHome/internal/aghos => ./internal/aghos
+	github.com/AdguardTeam/AdGuardHome/internal/aghslog => ./internal/aghslog
+	github.com/AdguardTeam/AdGuardHome/internal/aghtls => ./internal/aghtls
+	github.com/AdguardTeam/AdGuardHome/internal/arpdb => ./internal/arpdb
+	github.com/AdguardTeam/AdGuardHome/internal/client => ./internal/client
+	github.com/AdguardTeam/AdGuardHome/internal/dhcpd => ./internal/dhcpd
+	github.com/AdguardTeam/AdGuardHome/internal/filtering/hashprefix => ./internal/filtering/hashprefix
+	github.com/AdguardTeam/AdGuardHome/internal/filtering/safesearch => ./internal/filtering/safesearch
+	github.com/AdguardTeam/AdGuardHome/internal/permcheck => ./internal/permcheck
+	github.com/AdguardTeam/AdGuardHome/internal/rdns => ./internal/rdns
+	github.com/AdguardTeam/AdGuardHome/internal/updater => ./internal/updater
+	github.com/AdguardTeam/AdGuardHome/internal/version => ./internal/version
 )
