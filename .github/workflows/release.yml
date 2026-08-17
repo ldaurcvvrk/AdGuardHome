@@ -41,7 +41,7 @@ jobs:
 
       - name: Build binary
         run: |
-          GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -ldflags="-s -w -X main.version=${{ github.ref_name }}" -o ${{ matrix.artifact_name }} .
+          GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -ldflags="-s -w -X github.com/AdguardTeam/AdGuardHome/internal/version.version=${{ github.ref_name }}" -o ${{ matrix.artifact_name }} .
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
